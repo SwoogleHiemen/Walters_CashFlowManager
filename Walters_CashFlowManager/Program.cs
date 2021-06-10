@@ -124,7 +124,11 @@ namespace Walters_CashFlowManager
                 //total output of all ledger items
                 if (UserInput.Key == ConsoleKey.D4)
                 {
-                   
+                    //resetting the variables for the beginning of each report
+                    TWP = 0;
+                    TIP = 0;
+                    THP = 0;
+                    TSP = 0;
                     Console.Clear();
                     for (int i = 0 ; i < 9 + counter; i++)
                     {
@@ -173,8 +177,8 @@ namespace Walters_CashFlowManager
                             Console.WriteLine("Unit Price: $" +Math.Round(Analysis[i].GetPayment(),2));
                             Console.WriteLine("Extended Price: $"+ Math.Round(Analysis[i].GetPayment() * Analysis[i].GetHoursWorked(), 2));
                             Console.WriteLine("");
-                            TWP += (Analysis[i].GetPayment() * Analysis[i].GetHoursWorked());
-                            TIP += (Analysis[i].GetPayment() * Analysis[i].GetHoursWorked());
+                            TWP += Analysis[i].GetPayment() * Analysis[i].GetHoursWorked();
+                            TIP += Analysis[i].GetPayment() * Analysis[i].GetHoursWorked();
                         }
                     }
                     //when the above loop ends, then it will run this final messege, giving the 
