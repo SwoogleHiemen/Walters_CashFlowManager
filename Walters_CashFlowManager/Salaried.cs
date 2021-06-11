@@ -40,6 +40,8 @@ namespace Walters_CashFlowManager
         }
         public override decimal GetPayment()
         {
+            //didn't uses a GetEarnings here as Get Payment in this case
+            //will do the same thing
             return base.GetPayment();
         }
         public override decimal GetHoursWorked()
