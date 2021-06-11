@@ -139,8 +139,8 @@ namespace Walters_CashFlowManager
                             Console.WriteLine("========Salaried Employees========");
                             Console.WriteLine("Salaried Employee: "+ Analysis[i].GetName() + " " + Analysis[i].GetLastName());
                             Console.WriteLine("SSN: " + string.Format("{0:###-##-####}", int.Parse(Analysis[i].GetSSN())));
-                            Console.WriteLine("Weekly Salary: $"+ Math.Round(Analysis[i].GetPayment(), 2));
-                            Console.WriteLine("Earned: $" + Math.Round(Analysis[i].GetPayment(), 2));
+                            Console.WriteLine("Weekly Salary: "+ string.Format("{0:C}", Math.Round(Analysis[i].GetPayment(), 3)));
+                            Console.WriteLine("Earned: " + string.Format("{0:C}", Math.Round(Analysis[i].GetPayment(), 3)));
                             Console.WriteLine("");
                             TWP +=  Analysis[i].GetPayment();
                             TSP += Analysis[i].GetPayment();
@@ -151,7 +151,7 @@ namespace Walters_CashFlowManager
                             Console.WriteLine("========Hourly Employees========");
                             Console.WriteLine("Hourly Employee: " + Analysis[i].GetName() + " " + Analysis[i].GetLastName());
                             Console.WriteLine("SSN: " + string.Format("{0:###-##-####}", int.Parse(Analysis[i].GetSSN())));
-                            Console.WriteLine("Hourly Wage Salary: $" + Math.Round(Analysis[i].GetPayment(),2));
+                            Console.WriteLine("Hourly Wage Salary: " + string.Format("{0:C}", Math.Round(Analysis[i].GetPayment(),3)));
                             Console.WriteLine("Hours Worked:" + Analysis[i].GetHoursWorked());
                             if(Analysis[i].GetHoursWorked()<=40)
                             {
@@ -161,7 +161,7 @@ namespace Walters_CashFlowManager
                             {
                                 Earnings = (Analysis[i].GetPayment() * 40) + (Analysis[i].GetPayment() * (Analysis[i].GetHoursWorked() - 40) * 1.5M );
                             }
-                            Console.WriteLine("Earned: $" + Math.Round(Earnings,2));
+                            Console.WriteLine("Earned: " + string.Format("{0:C}", Math.Round(Earnings,3)));
                             Console.WriteLine("");
                             TWP += Earnings;
                             THP += Earnings;
@@ -174,8 +174,8 @@ namespace Walters_CashFlowManager
                             Console.WriteLine("Invoice: "+ string.Format("{0:######}",RandomNumber) +string.Format("{0:_####}", decimal.Parse(Analysis[i].GetName())));
                             Console.WriteLine("Quantity: "+ Analysis[i].GetHoursWorked());
                             Console.WriteLine("Part Description: "+ Analysis[i].GetLastName());
-                            Console.WriteLine("Unit Price: $" +Math.Round(Analysis[i].GetPayment(),2));
-                            Console.WriteLine("Extended Price: $"+ Math.Round(Analysis[i].GetPayment() * Analysis[i].GetHoursWorked(), 2));
+                            Console.WriteLine("Unit Price: " + string.Format("{0:C}", Math.Round(Analysis[i].GetPayment(),3)));
+                            Console.WriteLine("Extended Price: "+ string.Format("{0:C}", Math.Round(Analysis[i].GetPayment() * Analysis[i].GetHoursWorked(), 3)));
                             Console.WriteLine("");
                             TWP += Analysis[i].GetPayment() * Analysis[i].GetHoursWorked();
                             TIP += Analysis[i].GetPayment() * Analysis[i].GetHoursWorked();
@@ -183,11 +183,11 @@ namespace Walters_CashFlowManager
                     }
                     //when the above loop ends, then it will run this final messege, giving the 
                     //total weekly payout and the category breakdown.
-                    Console.WriteLine("Total Weekly Payout: $" + Math.Round(TWP,2));
+                    Console.WriteLine("Total Weekly Payout: " + string.Format("{0:C}", Math.Round(TWP, 3)));
                     Console.WriteLine("============Category Breakdown============");
-                    Console.WriteLine("Invoices: $" + Math.Round(TIP,2));
-                    Console.WriteLine("Salaried Payroll: $"+ Math.Round(TSP,2));
-                    Console.WriteLine("Hourly Payroll: $"+ Math.Round(THP,2));
+                    Console.WriteLine("Invoices: " + string.Format("{0:C}", Math.Round(TIP,3)));
+                    Console.WriteLine("Salaried Payroll: "+ string.Format("{0:C}", Math.Round(TSP,3)));
+                    Console.WriteLine("Hourly Payroll: "+ string.Format("{0:C}", Math.Round(THP,3)));
                     Console.WriteLine("");
                     Console.WriteLine("Press any key to continue...");
                     Console.ReadKey();
