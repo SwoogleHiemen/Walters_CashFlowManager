@@ -28,6 +28,12 @@ namespace Walters_CashFlowManager
             
         }
 
+        virtual public decimal GetEarnings()
+        {
+            decimal HoursWorked = _HoursWorked;
+            return HoursWorked;
+        }
+
         virtual public decimal GetHoursWorked()
         {
             decimal HoursWorked = _HoursWorked;

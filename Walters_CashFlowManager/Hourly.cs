@@ -42,10 +42,27 @@ namespace Walters_CashFlowManager
         public override decimal GetPayment()
         {
             return base.GetPayment();
+            
         }
         public override decimal GetHoursWorked()
         {
             return base.GetHoursWorked();
+        }
+        public override decimal GetEarnings()
+        {
+            decimal Payment=0M;
+            if (_HoursWorked <= 40)
+            {
+                Payment = _Payment;
+                Payment = Payment * _HoursWorked;
+            }
+            if (_HoursWorked > 40)
+            {
+                Payment = _Payment;
+                Payment = (Payment * 40) + (Payment * (_HoursWorked - 40) * 1.5M);
+            }
+ 
+            return Math.Round(Payment,3);
         }
     }
 }

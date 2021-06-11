@@ -15,6 +15,7 @@ namespace Walters_CashFlowManager
         string GetSSN();
         decimal GetPayment();
         decimal GetHoursWorked();
+        decimal GetEarnings();
     }
     public enum LedgerType
     {
