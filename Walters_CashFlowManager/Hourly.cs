@@ -13,13 +13,15 @@ namespace Walters_CashFlowManager
         private string _SSN;
         private decimal _Payment;
         private decimal _HoursWorked;
-        public Hourly(string Name, string LastName, string SSN, decimal Payment,decimal HoursWorked) : base(Name, LastName, SSN,Payment, HoursWorked)
+        private decimal _TotalEarnings;
+        public Hourly(string Name, string LastName, string SSN, decimal Payment,decimal HoursWorked,decimal TotalEarnings) : base(Name, LastName, SSN,Payment, HoursWorked,TotalEarnings)
         {
             _Name = Name;
             _LastName = LastName;
             _SSN = SSN;
             _Payment = Payment;
             _HoursWorked = HoursWorked;
+            _TotalEarnings = TotalEarnings;
         }
         
         public override string GetName()
@@ -63,6 +65,23 @@ namespace Walters_CashFlowManager
             }
  
             return Math.Round(Payment,3);
+        }
+        public override decimal TotalEarnings()
+        {
+            decimal TotalEarnings;
+            decimal Payment = 0M;
+            if (_HoursWorked <= 40)
+            {
+                Payment = _Payment;
+                Payment = Payment * _HoursWorked;
+            }
+            if (_HoursWorked > 40)
+            {
+                Payment = _Payment;
+                Payment = (Payment * 40) + (Payment * (_HoursWorked - 40) * 1.5M);
+            }
+            TotalEarnings = Payment;
+            return TotalEarnings;
         }
     }
 }

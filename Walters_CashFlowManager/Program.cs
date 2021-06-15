@@ -19,13 +19,13 @@ namespace Walters_CashFlowManager
             int counter = 0;
             bool quite = false;
             //these are the first 3 invoices, 3 Salaried and 3 Hourly Employees
-            Salaried SP1 = new Salaried("Greg", "Hefley", "456523346",13.00M,1M);
-            Salaried SP2 = new Salaried("Mr.", "Beast", "124633692", 200000M, 1M);
-            Salaried SP3 = new Salaried("Aloysius", "O'Hare", "420123420", 500000M, 1M);
-            Hourly HP1 = new Hourly("Joe", "Swanson", "123456781", 14.50M, 40M);
-            Hourly HP2 = new Hourly("Peter", "Griffin", "420696006", 12M, 23M);
-            Hourly HP3 = new Hourly("Chris", "Evans", "345640467",40M, 48M);
-            Invoice IN1 = new Invoice("2841", 3, "Rubix cube",13.78M );
+            Salaried SP1 = new Salaried("Greg", "Hefley", "456523346",13.00M,1M,1);
+            Salaried SP2 = new Salaried("Mr.", "Beast", "124633692", 200000M, 1M,1);
+            Salaried SP3 = new Salaried("Aloysius", "O'Hare", "420123420", 500000M, 1M,1);
+            Hourly HP1 = new Hourly("Joe", "Swanson", "123456781", 14.50M, 40M,1);
+            Hourly HP2 = new Hourly("Peter", "Griffin", "420696006", 12M, 23M,1);
+            Hourly HP3 = new Hourly("Chris", "Evans", "345640467",40M, 48M,1);
+            Invoice IN1 = new Invoice("2841", 3, "Rubix cube",13.78M);
             Invoice IN2 = new Invoice("7812", 1, "Water Bottle", 2M);
             Invoice IN3 = new Invoice("5827", 4, "GameCube Controller", 59.99M);
             //this is the array that will hold all of the Employees and invoices up to 50.
@@ -55,6 +55,7 @@ namespace Walters_CashFlowManager
                 if (UserInput.Key == ConsoleKey.D1)
                 {
                     decimal HoursWorked = 0M;
+                    decimal TotalEarnings = 0M;
                     Console.Clear();
                     Employee employee = new Employee();
                     
@@ -71,7 +72,7 @@ namespace Walters_CashFlowManager
 
                     //this is what actually puts the information in and creates the Employee,
                     //and you will see this in the next two if statements.
-                    employee = new Salaried(Name, LastName, SSN, Payment, HoursWorked);
+                    employee = new Salaried(Name, LastName, SSN, Payment, HoursWorked,TotalEarnings);
                     counter++;
                     Analysis[8 + counter] = employee;
                 }
@@ -79,7 +80,7 @@ namespace Walters_CashFlowManager
                 // of creating a Hourly Paid Employee
                 if (UserInput.Key == ConsoleKey.D2)
                 {
-                    
+                    decimal TotalEarnings = 0M;
                     Console.Clear();
                     Employee employee = new Employee();
                     Console.WriteLine("What is this employee's first name?");
@@ -94,7 +95,7 @@ namespace Walters_CashFlowManager
                     Console.WriteLine("How Many hours this week did this Employee work?");
                     decimal HoursWorked = decimal.Parse(Console.ReadLine());
 
-                    employee = new Hourly(Name, LastName, SSN, Payment, HoursWorked);
+                    employee = new Hourly(Name, LastName, SSN, Payment, HoursWorked,TotalEarnings);
                     counter++;
                     Analysis[8 + counter] = employee;
                 }
@@ -141,8 +142,10 @@ namespace Walters_CashFlowManager
                             Console.WriteLine("Weekly Salary: "+ string.Format("{0:C}", Analysis[i].GetPayment()));
                             Console.WriteLine("Earned: " + string.Format("{0:C}", Analysis[i].GetPayment()));
                             Console.WriteLine("");
-                            TWP +=  Analysis[i].GetPayment();
-                            TSP += Analysis[i].GetPayment();
+                            //TWP +=  Analysis[i].GetPayment();
+                           // TSP += Analysis[i].GetPayment();
+                            TWP += Analysis[i].TotalEarnings();
+                            TSP += Analysis[i].TotalEarnings();
                         }
                         if (Analysis[i].GetLedgerType() == LedgerType.HOURLY) 
                         {
@@ -154,8 +157,10 @@ namespace Walters_CashFlowManager
                             Console.WriteLine("Hours Worked:" + Analysis[i].GetHoursWorked());
                             Console.WriteLine("Earned: " + string.Format("{0:C}", Analysis[i].GetEarnings()));
                             Console.WriteLine("");
-                            TWP += Analysis[i].GetEarnings();
-                            THP += Analysis[i].GetEarnings();
+                            //TWP += Analysis[i].GetEarnings();
+                            //THP += Analysis[i].GetEarnings();
+                            TWP += Analysis[i].TotalEarnings();
+                            THP += Analysis[i].TotalEarnings();
                         }
                         if (Analysis[i].GetLedgerType() == LedgerType.INVOICE)
                         {
@@ -169,9 +174,11 @@ namespace Walters_CashFlowManager
                             Console.WriteLine("Unit Price: " + string.Format("{0:C}", Analysis[i].GetPayment()));
                             Console.WriteLine("Extended Price: " + string.Format("{0:C}", Analysis[i].GetEarnings()));
                             Console.WriteLine("");
-                            TWP += Analysis[i].GetEarnings();
-                            TIP += Analysis[i].GetEarnings();
-                }
+                            //TWP += Analysis[i].GetEarnings();
+                            // TIP += Analysis[i].GetEarnings();
+                            TWP += Analysis[i].TotalEarnings();
+                            TIP += Analysis[i].TotalEarnings();
+                        }
                     }
                     //when the above loop ends, then it will run this final messege, giving the 
                     //total weekly payout and the category breakdown.

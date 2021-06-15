@@ -13,18 +13,20 @@ namespace Walters_CashFlowManager
         private string _LastName;
         private decimal _Payment;
         private decimal _HoursWorked;
+        private decimal _TotalEarnings;
 
         public Employee()
         {
         }
 
-        public Employee(string Name, string LastName, string SSN,decimal Payment, decimal HoursWorked)
+        public Employee(string Name, string LastName, string SSN,decimal Payment, decimal HoursWorked,decimal TotalEarnings)
         {
             _Name = Name;
             _LastName = LastName;
             _SSN = SSN;
             _Payment = Payment;
             _HoursWorked = HoursWorked;
+            _TotalEarnings = TotalEarnings;
             
         }
 
@@ -67,6 +69,12 @@ namespace Walters_CashFlowManager
         {
             string SSN = _SSN;
             return SSN;
+        }
+
+        virtual public decimal TotalEarnings()
+        {
+            decimal TotalEarnings =+ _TotalEarnings;
+            return TotalEarnings;
         }
     }
 }

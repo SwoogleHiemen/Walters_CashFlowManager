@@ -65,5 +65,15 @@ namespace Walters_CashFlowManager
             Price = Price * _Quantity;
             return Math.Round(Price,3);
         }
+
+        public decimal TotalEarnings()
+        {
+            decimal Total = 0M;
+            decimal Price = 0M;
+            Price = _Price;
+            Price = Price * _Quantity;
+            Total = Price;
+            return Total;
+        }
     }
 }
